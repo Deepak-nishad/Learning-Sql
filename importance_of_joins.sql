@@ -16,25 +16,27 @@ INSERT INTO Employees (ID, Name, Department) VALUES
   select * from Employees;
   
   CREATE TABLE Salary (
-  ID INT PRIMARY KEY,
+  sID INT PRIMARY KEY,
   Employee_ID INT,
   Amount DECIMAL(10, 2)
 );
 
-INSERT INTO Salary (ID, Employee_ID, Amount) VALUES
+INSERT INTO Salary (sID, Employee_ID, Amount) VALUES
   (1001, 1, 5000.00),
   (1002, 2, 6000.00),
   (1003, 3, 4500.00);
   
     select * from salary;
+    drop table Salary;
     
-    SELECT Employees.Name, Employees.Department, Salary.Amount
+-- inner joins
+SELECT Employees.Name, Employees.Department, Salary.Amount,Salary.sID
 FROM Employees
 INNER JOIN Salary ON Employees.ID = Salary.Employee_ID;
 
 -- outer join
 
--- inner joins
+
 CREATE TABLE Customers (
   CustomerID INT PRIMARY KEY,
   CustomerName VARCHAR(50),
@@ -55,11 +57,25 @@ INSERT INTO Customers (CustomerID, CustomerName, City) VALUES
 INSERT INTO Orders (OrderID, CustomerID, Amount) VALUES
   (1001, 2, 150.50),
   (1002, 1, 75.20),
-  (1003, 3, 200.10);
+  (1003, 0, 200.10);
+  
+  drop table Orders;
+  
+-- desired column we get
 
-SELECT Customers.CustomerName, Customers.City, Orders.OrderID, Orders.Amount
-FROM Customers
-LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+-- SELECT Customers.CustomerName, Customers.City, Orders.OrderID, Orders.Amount FROM Customers LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+-- when all the coloum we get
+--  SELECT *  FROM Customers LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+ 
+-- industry standar follow
+
+-- select *  from Customers As C Left join Orders As O on c.CustomersID=Orders.CustomersID;
+
+-- When desired table print
+-- select C.CustomerName, O.OrderID from  Customers As C Left join Orders As O on C.CustomerID = O.CustomerID;
+
+ 
 
 -- right joins
 SELECT Customers.CustomerName, Customers.City, Orders.OrderID, Orders.Amount

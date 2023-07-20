@@ -17,6 +17,10 @@ VALUES (001, 'Monika', 'jind', 'F', 'JIND', 126102),
 		(004, 'Amitabh', 'mujafarpur','F', 'MOTIPUR', 789654),
 		(005, 'Vivek', 'delhi', 'F', 'UTTAM', 122112);
     
+    INSERT INTO customer 
+VALUES (001, 'Monika', 'jind', 'F', 'JIND', 126102);
+
+   drop table customer;
     -- when we have not enough data
 	insert into customer (id , cname, adress) values( 6 , 'akarsh','panipat');
    
@@ -29,7 +33,7 @@ CREATE TABLE order_details(
 order_ID INT PRIMARY KEY,
 deliver_date date,
 cust_id int,
-foreign key (cust_id) references customer(ID) on delete cascade
+foreign key (cust_id) references customer(ID) on delete set null
  );
  
  insert into order_details
@@ -40,7 +44,8 @@ foreign key (cust_id) references customer(ID) on delete cascade
  
  select * from order_details;
  delete from customer where id=1;
-
+  drop table customer;
+  
 create table account (
 ID INT PRIMARY KEY,
 name varchar(255) unique,
@@ -51,7 +56,7 @@ balance int not null default 0
 INSERT INTO ACCOUNT (ID, NAME)
  VALUES	(001, 'M');
  
- drop table customer;
+ drop table order_details;
 
 select * from account;
 
