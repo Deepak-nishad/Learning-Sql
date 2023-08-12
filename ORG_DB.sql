@@ -22,7 +22,7 @@ INSERT INTO Worker
 		(007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account'),
 		(008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin');
         
-SELECT * FROM Title;
+SELECT * FROM Worker;
 
 CREATE TABLE Bonus (
 	WORKER_REF_ID INT,
@@ -60,3 +60,74 @@ INSERT INTO Title
  (007, 'Executive', '2016-06-11 00:00:00'),
  (006, 'Lead', '2016-06-11 00:00:00'),
  (003, 'Lead', '2016-06-11 00:00:00');
+ 
+ -- Q-1. Write an SQL query to fetch “FIRST_NAME” from Worker table using the alias name as <WORKER_NAME>.
+ select first_name  AS Worker_Name from worker;
+ 
+ -- Q-2. Write an SQL query to fetch “FIRST_NAME” from Worker table in upper case
+ SELECT UPPER(first_name) FROM Worker;
+ 
+ -- Q-3. Write an SQL query to fetch unique values of DEPARTMENT from Worker table.
+ select distinct department from worker;
+ 
+ -- Q-4. Write an SQL query to print the first three characters of  FIRST_NAME from Worker table.
+ SELECT SUBSTRING(first_name,1,3)  FROM worker;
+ 
+ 
+-- Q-5. Write an SQL query to find the position of the alphabet (‘b’) in the first name column ‘Amitabh’ from Worker table.
+
+select INSTR(first_name, 'B') from worker where first_name = 'Amitabh';
+
+-- Q-6. Write an SQL query to print the FIRST_NAME from Worker table after removing white spaces from the right side.
+select RTRIM(first_name) from worker;
+
+-- Q-7. Write an SQL query to print the DEPARTMENT from Worker table after removing white spaces from the left side.
+select LTRIM(first_name) from worker;
+
+-- Q-8. Write an SQL query that fetches the unique values of DEPARTMENT from Worker table and prints its length.
+select distinct department, length(department)  from worker;
+
+-- Q-9. Write an SQL query to print the FIRST_NAME from Worker table after replacing ‘a’ with ‘A’
+
+select replace(first_name, 'a', 'A') from worker;
+
+-- Q-10. Write an SQL query to print the FIRST_NAME and LAST_NAME from Worker table into a single column COMPLETE_NAME.
+-- A space char should separate them.
+
+select concat(first_name, ' ' , last_name) as complete_Name from worker;
+
+-- Q-11. Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending.
+SELECT * FROM Worker ORDER BY FIRST_NAME ASC;
+
+-- Q-12. Write an SQL query to print all Worker details from the Worker table order by 
+-- FIRST_NAME Ascending and DEPARTMENT Descending.
+
+select * from worker order by first_name asc, department desc;
+
+-- Q-13. Write an SQL query to print details for Workers with the first name as “Vipul” and “Satish” from Worker table.
+select * from worker where first_name in('Vipul', 'Satish');
+
+-- Q-15. Write an SQL query to print details of Workers with DEPARTMENT name as “Admin*”.
+select * from worker where department like 'Admin%';
+
+-- Q-16. Write an SQL query to print details of the Workers whose FIRST_NAME contains ‘a’.
+select * from worker where first_name like '%a%';
+
+-- Q-17. Write an SQL query to print details of the Workers whose FIRST_NAME ends with ‘a’.
+select * from worker where first_name like '%a' ;
+
+-- Q-18. Write an SQL query to print details of the Workers whose FIRST_NAME ends with ‘h’ and contains six alphabets.
+
+select * from worker where first_name LIKE '_____h';
+
+-- Q-19. Write an SQL query to print details of the Workers whose SALARY lies between 100000 and 500000.
+select * from worker where salary between 100000 AND 500000;
+
+-- Q-20. Write an SQL query to print details of the Workers who have joined in Feb’2014.
+select * from worker where YEAR(joining_date) = 2014 AND MONTH(joining_date) = 02;
+
+
+
+ 
+
+ 
